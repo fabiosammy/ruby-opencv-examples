@@ -1,0 +1,15 @@
+services:
+  app:
+    build:
+      context: .
+    privileged: true
+    environment:
+      - DISPLAY=unix${DISPLAY:-:0}
+      - XDG_RUNTIME_DIR=/run/user/1000
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/var/www/app
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /etc/localtime:/etc/localtime:ro
+      - /run/user/1000:/run/user/1000
